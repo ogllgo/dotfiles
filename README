@@ -1,0 +1,20 @@
+DOTFILES
+========
+
+These are my dotfiles. They configure various software that I use.
+
+INSTALLATION
+------------
+
+    git clone https://github.com/ogllgo/dotfiles.git
+    cd dotfiles
+    stow [DIRECTORIES...]
+
+where DIRECTORIES is one or more Stow packages containing the configuration
+you wish to install (e.g., vim or tmux).
+
+LICENSE
+-------
+
+This project is licensed under the GNU Affero General Public License
+v3.0 or later. See the LICENSE file for details.
