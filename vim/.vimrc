@@ -1,0 +1,145 @@
+" VIM-PLUG {{{
+call plug#begin()
+	Plug 'tpope/vim-fugitive'           " Git
+	Plug 'tpope/vim-sensible'           " Smart defaults
+	Plug 'SirVer/ultisnips'             " Snippet engine
+    Plug 'honza/vim-snippets'           " Snippets
+	Plug 'morhetz/gruvbox'              " Theme
+    Plug 'dense-analysis/ale'           " ALE
+    Plug 'vim-scripts/a.vim'            " Switch between %.c and %.h quickly
+    Plug 'ludovicchabant/vim-gutentags' " CTags frontend
+    Plug 'lervag/vimtex'                " LaTeX
+    Plug 'tpope/vim-commentary'         " Better comment management
+    Plug 'kana/vim-textobj-user'        " Custom text objects
+    Plug 'junegunn/vim-easy-align'      " Alignment
+    Plug 'tpope/vim-surround'           " Surround management
+    Plug 'tpope/vim-repeat'             " Make <.> work on plugins, too
+    Plug 'preservim/tagbar'
+    Plug 'airblade/vim-rooter' " Autoset project root
+call plug#end()
+" }}}
+" ALE {{{
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['prettier', 'eslint'],
+\   'typescript': ['prettier', 'eslint'],
+\   'cpp': ['clang-format'],
+\   'c': ['clang-format'],
+\   'python': ['black'],
+\   'tex': ['latexindent']
+\}
+
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = {
+\   'c': ['clangd'],
+\   'cpp': ['clangd'],
+\   'python': ['flake8'],
+\   'javascript': ['eslint'],
+\   'tex': ['chktex']
+\}
+let g:ale_completion_autoimport = 1
+" }}}
+" VimTeX {{{
+let g:vimtex_view_method='zathura'
+let g:vimtex_compiler_method='latexmk'
+
+let g:tex_flavor='latex'
+" }}} VimTeX
+" AUGROUPS {{{
+augroup AleProvidesCompetion
+    autocmd!
+    autocmd FileType c,cpp,javascript,typescript,python setlocal omnifunc=ale#completion#OmniFunc
+augroup END
+" }}} AUGROUPS
+" BINDS {{{
+map Q gq
+
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
+
+nnoremap <silent>gd :ALEGoToDefinition<CR>
+
+nnoremap <leader>td :TagbarToggle<CR>
+nnoremap <leader>tt :GutentagsUpdate<CR>
+
+nnoremap <C-]> <cmd>tab split<CR><cmd>tag <C-r><C-w><CR>
+
+nnoremap <leader>f :grep
+nnoremap <leader>w :vimgrep /\<<C-r><C-w>\>/gj **/*<CR>
+
+" <l>a switches .c <-> .h
+" <l>o opens .h [or .c if in .h] in a split
+nnoremap <leader>a :A<CR>
+nnoremap <leader>o :AS<CR>
+" }}}
+" COMMANDS {{{
+command! E Explore
+" Diff helper
+if !exists(":DiffOrig")
+  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
+        \ | wincmd p | diffthis
+endif
+" }}}
+" CONFIG {{{
+set number
+set relativenumber
+set nocompatible
+set ttimeout          " time out for key codes
+set ttimeoutlen=100   " wait up to 100ms after Esc for special key
+set scrolloff=5
+set textwidth=80
+
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+set smarttab
+set expandtab
+set softtabstop=4
+set shiftwidth=4
+set tabstop=4
+
+if has('persistent_undo')
+set undofile
+set undodir=~/.vim/undo
+endif
+
+set updatetime=300
+set signcolumn=yes
+
+set foldmethod=marker
+
+set grepprg=rg\ --vimgrep
+
+set hidden
+set mouse=a
+set clipboard=unnamedplus
+set splitbelow
+set splitright
+
+set wildmenu
+set wildmode=longest:full,full
+
+set showcmd
+set showmode
+
+set cursorline
+
+set nowrap
+
+set shortmess+=c
+set belloff+=ctrlg
+
+set autocomplete
+set complete=.,w,b,u,t,o
+set completeopt=menuone,popup,fuzzy
+" }}}
+" APPEARANCE {{{
+set termguicolors
+set background=dark
+colorscheme gruvbox
+filetype plugin indent on
+syntax on
+" }}}
