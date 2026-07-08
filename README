@@ -11,7 +11,7 @@ INSTALLATION
     stow [DIRECTORIES...]
 
 where DIRECTORIES is one or more Stow packages containing the configuration
-you wish to install (e.g., vim or tmux).
+you wish to install (e.g., vim, tmux, kitty).
 
 LICENSE
 -------
