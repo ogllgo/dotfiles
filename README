@@ -13,6 +13,17 @@ INSTALLATION
 where DIRECTORIES is one or more Stow packages containing the configuration
 you wish to install (e.g., vim, tmux, kitty).
 
+STRUCTURE
+---------
+
+Stow packages for configurations of software can be found within the packages/
+directory. Stow is configured such that directories can be used directly as
+packages; "stow vim" will manage packages/vim.
+
+Stow should be ran from the repository's root directory.
+
+Screenshots of the software can be found in the screenshots/ directory.
+
 LICENSE
 -------
 
