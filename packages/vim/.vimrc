@@ -118,7 +118,7 @@ set undofile
 set undodir=~/.vim/undo
 endif
 
-set updatetime=300
+set updatetime=1000
 set signcolumn=yes
 
 set foldmethod=marker
