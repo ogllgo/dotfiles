@@ -39,6 +39,8 @@
     prune = true
 [status]
     branch = true
+[bash]
+    showInformativeStatus = true
 
 [include]
     path = .gitconfig.local
