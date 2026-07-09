@@ -51,6 +51,12 @@ let g:vimtex_compiler_method='latexmk'
 
 let g:tex_flavor='latex'
 " }}} VimTeX
+" ULTISNIPS {{{
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" }}}
 " AUGROUPS {{{
 augroup AleProvidesCompetion
     autocmd!
@@ -82,8 +88,8 @@ nnoremap <leader>q :copen<CR>
 nnoremap [q :cprev<CR>
 nnoremap ]q :cnext<CR>
 
-inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
-
+inoremap <expr> <C-b> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#JumpForwards()<CR>"
+inoremap <expr> <C-x> pumvisible() ? "\<C-p>" : "\<C-R>=UltiSnips#JumpBackwards()<CR>"
 " }}}
 " COMMANDS {{{
 command! E Explore
@@ -127,6 +133,7 @@ set grepprg=rg\ --vimgrep
 
 set hidden
 set mouse=a
+
 set splitbelow
 set splitright
 
@@ -135,7 +142,6 @@ set wildmode=longest:full,full
 
 set showcmd
 set showmode
-
 
 set nowrap
 
