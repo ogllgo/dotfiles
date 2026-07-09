@@ -115,7 +115,6 @@ set grepprg=rg\ --vimgrep
 
 set hidden
 set mouse=a
-set clipboard=unnamedplus
 set splitbelow
 set splitright
 
