@@ -136,7 +136,6 @@ set wildmode=longest:full,full
 set showcmd
 set showmode
 
-set cursorline
 
 set nowrap
 
@@ -146,6 +145,7 @@ set belloff+=ctrlg
 " APPEARANCE {{{
 set termguicolors
 set background=dark
+set cursorline
 colorscheme gruvbox
 filetype plugin indent on
 syntax on
