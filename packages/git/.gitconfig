@@ -1,0 +1,42 @@
+[init]
+	defaultBranch = main
+[user]
+    name = kegpoison
+	email = ugglefluffie@gmail.com
+[gpg]
+	format = ssh
+[commit]
+    gpgsign = true
+[core]
+    editor = vim
+    autocrlf = input
+    ignorecase = false
+[push]
+    autoSetupRemote = true
+    default = simple
+[pull]
+    rebase = true
+[rebase]
+    autoStash = true
+[merge]
+    conflictstyle = zdiff3
+[diff]
+    colorMoved = zebra
+[rerere]
+    enabled = true
+    autoupdate = true
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    cm = commit
+    lg = log --graph --decorate --oneline --all
+    last = log -1 HEAD
+    unstage = reset HEAD --
+[fetch]
+    prune = true
+[status]
+    branch = true
+
+[include]
+    path = .gitconfig.local
