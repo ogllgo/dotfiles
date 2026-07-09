@@ -1,21 +1,22 @@
 " VIM-PLUG {{{
 call plug#begin()
-	Plug 'tpope/vim-fugitive'           " Git
-	Plug 'tpope/vim-sensible'           " Smart defaults
-	Plug 'SirVer/ultisnips'             " Snippet engine
-    Plug 'honza/vim-snippets'           " Snippets
-	Plug 'morhetz/gruvbox'              " Theme
-    Plug 'dense-analysis/ale'           " ALE
-    Plug 'vim-scripts/a.vim'            " Switch between %.c and %.h quickly
-    Plug 'ludovicchabant/vim-gutentags' " CTags frontend
-    Plug 'lervag/vimtex'                " LaTeX
-    Plug 'tpope/vim-commentary'         " Better comment management
-    Plug 'kana/vim-textobj-user'        " Custom text objects
-    Plug 'junegunn/vim-easy-align'      " Alignment
-    Plug 'tpope/vim-surround'           " Surround management
-    Plug 'tpope/vim-repeat'             " Make <.> work on plugins, too
-    Plug 'preservim/tagbar'
-    Plug 'airblade/vim-rooter' " Autoset project root
+	Plug 'tpope/vim-fugitive'              " Git
+	Plug 'tpope/vim-sensible'              " Smart defaults
+	Plug 'SirVer/ultisnips'                " Snippet engine
+    Plug 'honza/vim-snippets'              " Snippets
+	Plug 'morhetz/gruvbox'                 " Theme
+    Plug 'dense-analysis/ale'              " ALE
+    Plug 'vim-scripts/a.vim'               " Switch between %.c and %.h quickly
+    Plug 'ludovicchabant/vim-gutentags'    " CTags frontend
+    Plug 'lervag/vimtex'                   " LaTeX
+    Plug 'tpope/vim-commentary'            " Better comment management
+    Plug 'kana/vim-textobj-user'           " Custom text objects
+    Plug 'junegunn/vim-easy-align'         " Alignment
+    Plug 'tpope/vim-surround'              " Surround management
+    Plug 'tpope/vim-repeat'                " Make <.> work on plugins, too
+    Plug 'preservim/tagbar'                " Way to see all tags in a file
+    Plug 'airblade/vim-rooter'             " Autoset project root
+    Plug 'prabirshrestha/asyncomplete.vim' " Autocomplete menu
 call plug#end()
 " }}}
 " ALE {{{
@@ -72,6 +73,9 @@ nnoremap <leader>w :vimgrep /\<<C-r><C-w>\>/gj **/*<CR>
 " <l>o opens .h [or .c if in .h] in a split
 nnoremap <leader>a :A<CR>
 nnoremap <leader>o :AS<CR>
+
+inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+
 " }}}
 " COMMANDS {{{
 command! E Explore
@@ -130,10 +134,6 @@ set nowrap
 
 set shortmess+=c
 set belloff+=ctrlg
-
-set autocomplete
-set complete=.,w,b,u,t,o
-set completeopt=menuone,popup,fuzzy
 " }}}
 " APPEARANCE {{{
 set termguicolors
