@@ -40,6 +40,10 @@ let g:ale_linters = {
 \   'tex': ['chktex']
 \}
 let g:ale_completion_autoimport = 1
+
+" Quickfix list integration
+let g:ale_set_quickfix = 1
+let g:ale_open_list = 1
 " }}}
 " VimTeX {{{
 let g:vimtex_view_method='zathura'
@@ -73,6 +77,10 @@ nnoremap <leader>w :vimgrep /\<<C-r><C-w>\>/gj **/*<CR>
 " <l>o opens .h [or .c if in .h] in a split
 nnoremap <leader>a :A<CR>
 nnoremap <leader>o :AS<CR>
+
+nnoremap <leader>q :copen<CR>
+nnoremap [q :cprev<CR>
+nnoremap ]q :cnext<CR>
 
 inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() : "\<cr>"
 
