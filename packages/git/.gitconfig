@@ -33,7 +33,7 @@
     co = checkout
     br = branch
     cm = commit
-    lg = log --graph --decorate --oneline --all --format='%h %G? %s'
+    lg = log --graph --decorate --all --color=auto --format='%C(auto)%h%C(reset)%C(auto)%d%C(reset) %C(auto)%G?%C(reset) %s'
     last = log -1 HEAD
     unstage = reset HEAD --
 [fetch]
