@@ -1,22 +1,38 @@
 " VIM-PLUG {{{
 call plug#begin()
-	Plug 'tpope/vim-fugitive'              " Git
-	Plug 'tpope/vim-sensible'              " Smart defaults
-	Plug 'SirVer/ultisnips'                " Snippet engine
-    Plug 'honza/vim-snippets'              " Snippets
-	Plug 'morhetz/gruvbox'                 " Theme
-    Plug 'dense-analysis/ale'              " ALE
-    Plug 'vim-scripts/a.vim'               " Switch between %.c and %.h quickly
-    Plug 'ludovicchabant/vim-gutentags'    " CTags frontend
-    Plug 'lervag/vimtex'                   " LaTeX
-    Plug 'tpope/vim-commentary'            " Better comment management
-    Plug 'kana/vim-textobj-user'           " Custom text objects
-    Plug 'junegunn/vim-easy-align'         " Alignment
-    Plug 'tpope/vim-surround'              " Surround management
-    Plug 'tpope/vim-repeat'                " Make <.> work on plugins, too
-    Plug 'preservim/tagbar'                " Way to see all tags in a file
-    Plug 'airblade/vim-rooter'             " Autoset project root
-    Plug 'prabirshrestha/asyncomplete.vim' " Autocomplete menu
+	Plug 'tpope/vim-sensible' " Smart defaults
+
+    " Linting, Formatting
+    Plug 'dense-analysis/ale'
+
+    " Navigation
+    Plug 'airblade/vim-rooter'          " Autoset project root
+    Plug 'ludovicchabant/vim-gutentags' " CTags frontend
+    Plug 'preservim/tagbar'             " Way to see all tags in a file
+    Plug 'kana/vim-textobj-user'        " Custom text objects
+
+    " Git
+	Plug 'tpope/vim-fugitive'
+
+    " Editing
+    Plug 'tpope/vim-surround'      " Surround management
+    Plug 'tpope/vim-repeat'        " Make <.> work on plugins, too
+    Plug 'tpope/vim-commentary'    " Better comment management
+    Plug 'junegunn/vim-easy-align' " Alignment
+
+    " Filetype Specific
+    Plug 'vim-scripts/a.vim' " Switch between %.c and %.h quickly
+    Plug 'lervag/vimtex'     " Various LaTeX things
+
+    " Snippets
+	Plug 'SirVer/ultisnips'   " Engine
+    Plug 'honza/vim-snippets' " General provider
+
+    " Autocomplete Menu
+    Plug 'prabirshrestha/asyncomplete.vim'
+
+    " Theme
+	Plug 'morhetz/gruvbox'
 call plug#end()
 " }}} VIM-PLUG
 " ALE {{{
