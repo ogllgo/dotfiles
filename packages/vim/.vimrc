@@ -85,8 +85,7 @@ call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_opti
     \ }))
 " }}} ASYNCOMPLETE
 " ULTISNIPS {{{
-
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}} ULTISNIPS
