@@ -56,7 +56,7 @@ let g:ale_fix_on_save = 1
 let g:ale_linters = {
 \   'c': ['cc'],
 \   'cpp': ['cc'],
-\   'python': ['flake8'],
+\   'python': ['ruff'],
 \   'javascript': ['eslint'],
 \   'tex': ['chktex']
 \}
