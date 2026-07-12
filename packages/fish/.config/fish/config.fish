@@ -5,4 +5,8 @@ if status is-interactive
     if not set -q SSH_AUTH_SOCK
         eval (ssh-agent -c) > /dev/null
     end
+
+    if test (uname) = Darwin
+        fish_add_path "/opt/homebrew/bin"
+    end
 end
