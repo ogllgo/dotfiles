@@ -18,7 +18,7 @@ call plug#begin()
     Plug 'airblade/vim-rooter'             " Autoset project root
     Plug 'prabirshrestha/asyncomplete.vim' " Autocomplete menu
 call plug#end()
-" }}}
+" }}} VIM-PLUG
 " ALE {{{
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -44,7 +44,7 @@ let g:ale_completion_autoimport = 1
 " Quickfix list integration
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1
-" }}}
+" }}} ALE
 " VimTeX {{{
 let g:vimtex_view_method='zathura'
 let g:vimtex_compiler_method='latexmk'
@@ -56,7 +56,7 @@ let g:tex_flavor='latex'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-" }}}
+" }}} ULTISNIPS
 " AUGROUPS {{{
 augroup AleProvidesCompetion
     autocmd!
@@ -90,7 +90,7 @@ nnoremap ]q :cnext<CR>
 
 inoremap <expr> <C-b> pumvisible() ? "\<C-n>" : "\<C-R>=UltiSnips#JumpForwards()<CR>"
 inoremap <expr> <C-x> pumvisible() ? "\<C-p>" : "\<C-R>=UltiSnips#JumpBackwards()<CR>"
-" }}}
+" }}} BINDS
 " COMMANDS {{{
 command! E Explore
 " Diff helper
@@ -98,7 +98,7 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
         \ | wincmd p | diffthis
 endif
-" }}}
+" }}} COMMANDS
 " CONFIG {{{
 set number
 set relativenumber
@@ -147,7 +147,7 @@ set nowrap
 
 set shortmess+=c
 set belloff+=ctrlg
-" }}}
+" }}} CONFIG
 " APPEARANCE {{{
 set termguicolors
 set background=dark
@@ -155,4 +155,4 @@ set cursorline
 colorscheme gruvbox
 filetype plugin indent on
 syntax on
-" }}}
+" }}} APPEARANCE
