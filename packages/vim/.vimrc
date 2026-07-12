@@ -67,6 +67,23 @@ let g:vimtex_compiler_method='latexmk'
 
 let g:tex_flavor='latex'
 " }}} VimTeX
+" ASYNCOMPLETE {{{
+let g:asyncomplete_auto_popup = 1
+let g:asyncomplete_auto_completeopt = 1
+
+call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
+    \ 'name': 'ale',
+    \ 'allowlist': ['c', 'cpp', 'python', 'javascript', 'typescript'],
+    \ 'triggermod': '.',
+    \ 'completor': function('asyncomplete#sources#ale#completor')
+    \ }))
+
+call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+    \ 'name': 'ultisnips',
+    \ 'allowlist': ['*'],
+    \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+    \ }))
+" }}} ASYNCOMPLETE
 " ULTISNIPS {{{
 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -74,10 +91,6 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}} ULTISNIPS
 " AUGROUPS {{{
-augroup AleProvidesCompetion
-    autocmd!
-    autocmd FileType c,cpp,javascript,typescript,python setlocal omnifunc=ale#completion#OmniFunc
-augroup END
 " }}} AUGROUPS
 " BINDS {{{
 map Q gq
