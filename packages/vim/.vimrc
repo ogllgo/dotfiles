@@ -175,6 +175,8 @@ set nowrap
 
 set shortmess+=c
 set belloff+=ctrlg
+
+set completeopt=menuone,noinsert,noselect
 " }}} CONFIG
 " APPEARANCE {{{
 set termguicolors
