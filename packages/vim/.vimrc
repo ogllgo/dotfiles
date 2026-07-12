@@ -12,7 +12,8 @@ call plug#begin()
     Plug 'preservim/tagbar'             " Way to see all tags in a file
 
     " Git
-	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-fugitive'     " Git integration
+    Plug 'airblade/vim-gitgutter' " Show hunks in a gutter
 
     " Editing
     Plug 'junegunn/vim-easy-align' " Alignment
