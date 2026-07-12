@@ -7,29 +7,31 @@ call plug#begin()
 
     " Navigation
     Plug 'airblade/vim-rooter'          " Autoset project root
+    Plug 'kana/vim-textobj-user'        " Custom text objects
     Plug 'ludovicchabant/vim-gutentags' " CTags frontend
     Plug 'preservim/tagbar'             " Way to see all tags in a file
-    Plug 'kana/vim-textobj-user'        " Custom text objects
 
     " Git
 	Plug 'tpope/vim-fugitive'
 
     " Editing
-    Plug 'tpope/vim-surround'      " Surround management
-    Plug 'tpope/vim-repeat'        " Make <.> work on plugins, too
-    Plug 'tpope/vim-commentary'    " Better comment management
     Plug 'junegunn/vim-easy-align' " Alignment
+    Plug 'tpope/vim-commentary'    " Better comment management
+    Plug 'tpope/vim-repeat'        " Make <.> work on plugins, too
+    Plug 'tpope/vim-surround'      " Surround management
 
     " Filetype Specific
-    Plug 'vim-scripts/a.vim' " Switch between %.c and %.h quickly
     Plug 'lervag/vimtex'     " Various LaTeX things
+    Plug 'vim-scripts/a.vim' " Switch between %.c and %.h quickly
 
     " Snippets
-	Plug 'SirVer/ultisnips'   " Engine
     Plug 'honza/vim-snippets' " General provider
+	Plug 'SirVer/ultisnips'   " Engine
 
     " Autocomplete Menu
-    Plug 'prabirshrestha/asyncomplete.vim'
+    Plug 'prabirshrestha/asyncomplete.vim'           " Main plugin
+    Plug 'andreypopp/asyncomplete-ale.vim'           " ALE integration
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim' " UltiSnips integration
 
     " Theme
 	Plug 'morhetz/gruvbox'
