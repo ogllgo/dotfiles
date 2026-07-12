@@ -28,10 +28,13 @@ call plug#begin()
     Plug 'honza/vim-snippets' " General provider
 	Plug 'SirVer/ultisnips'   " Engine
 
+    " LSP Integration
+    Plug 'prabirshrestha/vim-lsp'
+
     " Autocomplete Menu
     Plug 'prabirshrestha/asyncomplete.vim'           " Main plugin
-    Plug 'andreypopp/asyncomplete-ale.vim'           " ALE integration
     Plug 'prabirshrestha/asyncomplete-ultisnips.vim' " UltiSnips integration
+    Plug 'prabirshrestha/asyncomplete-lsp.vim'       " vim-lsp integration
 
     " Theme
 	Plug 'morhetz/gruvbox'
@@ -69,16 +72,43 @@ let g:vimtex_compiler_method='latexmk'
 
 let g:tex_flavor='latex'
 " }}} VimTeX
+" VIM-LSP {{{
+" Python
+if executable('pylsp')
+    " pip install python-lsp-server
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pylsp',
+        \ 'cmd': {server_info->['pylsp']},
+        \ 'allowlist': ['python'],
+        \ })
+endif
+" C, C++, Objective C, Objective C++
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd', '-background-index']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+" Typescript, Javascript
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+        \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+        \ 'whitelist': ['typescript', 'typescript.tsx', 'typescriptreact'],
+        \ })
+    au User lsp_setup call lsp#register_server({
+      \ 'name': 'javascript support using typescript-language-server',
+      \ 'cmd': { server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri': { server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_directory(lsp#utils#get_buffer_path(), '.git/..'))},
+      \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact']
+      \ })
+endif
+" }}} VIM-LSP
 " ASYNCOMPLETE {{{
 let g:asyncomplete_auto_popup = 1
 let g:asyncomplete_auto_completeopt = 1
-
-call asyncomplete#register_source(asyncomplete#sources#ale#get_source_options({
-    \ 'name': 'ale',
-    \ 'allowlist': ['c', 'cpp', 'python', 'javascript', 'typescript'],
-    \ 'triggermod': '.',
-    \ 'completor': function('asyncomplete#sources#ale#completor')
-    \ }))
 
 call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
     \ 'name': 'ultisnips',
@@ -92,6 +122,34 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }}} ULTISNIPS
 " AUGROUPS {{{
+augroup lsp_install
+    au!
+    " call s:on_lsp_buffer_enabled only for languages that has the server registered.
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
+    nmap <buffer> gS <plug>(lsp-workspace-symbol-search)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+    nnoremap <buffer> <expr><c-f> lsp#scroll(+4)
+    nnoremap <buffer> <expr><c-d> lsp#scroll(-4)
+
+    let g:lsp_format_sync_timeout = 1000
+    autocmd! BufWritePre *.rs,*.go call execute('LspDocumentFormatSync')
+
+    " refer to doc to add more commands
+endfunction
 " }}} AUGROUPS
 " BINDS {{{
 map Q gq
