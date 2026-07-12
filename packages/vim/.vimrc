@@ -47,7 +47,7 @@ let g:ale_fixers = {
 \   'typescript': ['prettier', 'eslint'],
 \   'cpp': ['clang-format', 'clangtidy'],
 \   'c': ['clang-format', 'clangtidy'],
-\   'python': ['black'],
+\   'python': ['black', 'isort'],
 \   'tex': ['latexindent']
 \}
 
