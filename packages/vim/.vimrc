@@ -74,11 +74,10 @@ let g:tex_flavor='latex'
 " }}} VimTeX
 " VIM-LSP {{{
 " Python
-if executable('pylsp')
-    " pip install python-lsp-server
+if executable('pyright')
     au User lsp_setup call lsp#register_server({
-        \ 'name': 'pylsp',
-        \ 'cmd': {server_info->['pylsp']},
+        \ 'name': 'pyright',
+        \ 'cmd': {server_info->['pyright']},
         \ 'allowlist': ['python'],
         \ })
 endif
