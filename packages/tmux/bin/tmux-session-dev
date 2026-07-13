@@ -2,6 +2,7 @@
 set -euo pipefail
 
 SESSION="dev"
+DELAY='0.4'
 
 if tmux has-session -t "$SESSION" 2>/dev/null; then
     tmux attach-session -t "$SESSION"
@@ -19,8 +20,8 @@ tmux split-window -h -t "$SESSION:editor.1"
 tmux split-window -v -t "$SESSION:editor.2"
 
 tmux send-keys -t "$SESSION:editor.1" "vim ." C-m
-tmux send-keys -t "$SESSION:editor.2" 'sleep 0.1 && cmatrix -s' C-m
-tmux send-keys -t "$SESSION:editor.3" 'sleep 0.1 && cbonsai -S -W 3 -t 0.02' C-m
+tmux send-keys -t "$SESSION:editor.2" "sleep $DELAY && cmatrix -s" C-m
+tmux send-keys -t "$SESSION:editor.3" "sleep $DELAY && cbonsai -S -W 3 -t 0.02" C-m
 
 tmux select-pane -t "$SESSION:editor.1"
 
