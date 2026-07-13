@@ -2,6 +2,7 @@
 set -euo pipefail
 
 SESSION="dev"
+VIM_WIDTH=60 # Must not be below 0 or above 100!
 DELAY='0.4'
 
 if tmux has-session -t "$SESSION" 2>/dev/null; then
@@ -15,7 +16,7 @@ tmux new-window -t "$SESSION" -n shell
 
 tmux select-window -t "$SESSION:1"
 
-tmux split-window -h -t "$SESSION:editor.1"
+tmux split-window -h -p $((100 - VIM_WIDTH)) -t "$SESSION:editor.1"
 
 tmux split-window -v -t "$SESSION:editor.2"
 
