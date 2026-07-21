@@ -30,7 +30,8 @@ call plug#begin()
 	Plug 'SirVer/ultisnips'   " Engine
 
     " LSP Integration
-    Plug 'prabirshrestha/vim-lsp'
+    Plug 'prabirshrestha/vim-lsp' " LSP frontend
+    Plug 'mattn/vim-lsp-settings' " Automatically manage LSPs for files
 
     " Autocomplete Menu
     Plug 'prabirshrestha/asyncomplete.vim'           " Main plugin
