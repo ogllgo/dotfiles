@@ -8,8 +8,6 @@ call plug#begin()
     " Navigation
     Plug 'airblade/vim-rooter'          " Autoset project root
     Plug 'kana/vim-textobj-user'        " Custom text objects
-    Plug 'ludovicchabant/vim-gutentags' " CTags frontend
-    Plug 'preservim/tagbar'             " Way to see all tags in a file
 
     " Git
 	Plug 'tpope/vim-fugitive'     " Git integration
@@ -158,11 +156,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 nnoremap <silent>gd :ALEGoToDefinition<CR>
-
-nnoremap <leader>td :TagbarToggle<CR>
-nnoremap <leader>tt :GutentagsUpdate<CR>
-
-nnoremap <C-]> <cmd>tab split<CR><cmd>tag <C-r><C-w><CR>
 
 nnoremap <leader>f :grep
 nnoremap <leader>w :vimgrep /\<<C-r><C-w>\>/gj **/*<CR>
