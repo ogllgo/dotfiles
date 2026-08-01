@@ -104,6 +104,7 @@ if executable('typescript-language-server')
       \ 'whitelist': ['javascript', 'javascript.jsx', 'javascriptreact']
       \ })
 endif
+let g:lsp_signs_enabled = 1
 " }}} VIM-LSP
 " ASYNCOMPLETE {{{
 let g:asyncomplete_auto_popup = 1
@@ -154,8 +155,6 @@ map Q gq
 
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
-
-nnoremap <silent>gd :ALEGoToDefinition<CR>
 
 nnoremap <leader>f :grep
 nnoremap <leader>w :vimgrep /\<<C-r><C-w>\>/gj **/*<CR>
