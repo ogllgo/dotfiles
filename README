@@ -11,7 +11,9 @@ INSTALLATION
     stow [DIRECTORIES...]
 
 where DIRECTORIES is one or more Stow packages containing configurations
-you wish to install (e.g., vim, tmux, kitty).
+you wish to install (e.g., vim, tmux, kitty). A script (install.sh) which runs
+stow for each directory within packages/ can be found within the scripts/
+directory.
 
 STRUCTURE
 ---------
